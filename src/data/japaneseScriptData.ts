@@ -1,0 +1,607 @@
+import { HiraganaChar, KatakanaChar, DakuonChar, KanjiItem, KanjiQuizQuestion } from '../types/kanji';
+
+export const HIRAGANA_DATA: HiraganaChar[] = [
+  // Vowels
+  { character: 'あ', romaji: 'a', group: 'vowels', exampleWord: 'ありがとう', exampleRomaji: 'arigatou', exampleMeaning: 'Terima kasih' },
+  { character: 'い', romaji: 'i', group: 'vowels', exampleWord: 'いくら', exampleRomaji: 'ikura', exampleMeaning: 'Berapa harga' },
+  { character: 'う', romaji: 'u', group: 'vowels', exampleWord: 'うどん', exampleRomaji: 'udon', exampleMeaning: 'Mie udon' },
+  { character: 'え', romaji: 'e', group: 'vowels', exampleWord: 'えき', exampleRomaji: 'eki', exampleMeaning: 'Stasiun' },
+  { character: 'お', romaji: 'o', group: 'vowels', exampleWord: 'おいしい', exampleRomaji: 'oishii', exampleMeaning: 'Enak / lezat' },
+
+  // K-row
+  { character: 'か', romaji: 'ka', group: 'k', exampleWord: 'カフェ', exampleRomaji: 'kafe', exampleMeaning: 'Kafe' },
+  { character: 'き', romaji: 'ki', group: 'k', exampleWord: 'きっぷ', exampleRomaji: 'kippu', exampleMeaning: 'Tiket' },
+  { character: 'く', romaji: 'ku', group: 'k', exampleWord: 'ください', exampleRomaji: 'kudasai', exampleMeaning: 'Tolong berikan' },
+  { character: 'け', romaji: 'ke', group: 'k', exampleWord: 'けっこん', exampleRomaji: 'kekkon', exampleMeaning: 'Pernikahan' },
+  { character: 'こ', romaji: 'ko', group: 'k', exampleWord: 'こんにちは', exampleRomaji: 'konnichiwa', exampleMeaning: 'Halo / Selamat siang' },
+
+  // S-row
+  { character: 'さ', romaji: 'sa', group: 's', exampleWord: 'さようなら', exampleRomaji: 'sayounara', exampleMeaning: 'Selamat tinggal' },
+  { character: 'し', romaji: 'shi', group: 's', exampleWord: 'しんかんせん', exampleRomaji: 'shinkansen', exampleMeaning: 'Kereta cepat' },
+  { character: 'す', romaji: 'su', group: 's', exampleWord: 'すみません', exampleRomaji: 'sumimasen', exampleMeaning: 'Permisi / Maaf' },
+  { character: 'せ', romaji: 'se', group: 's', exampleWord: 'せんせい', exampleRomaji: 'sensei', exampleMeaning: 'Guru' },
+  { character: 'そ', romaji: 'so', group: 's', exampleWord: 'そうですね', exampleRomaji: 'sou desu ne', exampleMeaning: 'Begitu ya' },
+
+  // T-row
+  { character: 'た', romaji: 'ta', group: 't', exampleWord: 'たべもの', exampleRomaji: 'tabemono', exampleMeaning: 'Makanan' },
+  { character: 'ち', romaji: 'chi', group: 't', exampleWord: 'ちかてつ', exampleRomaji: 'chikatetsu', exampleMeaning: 'Kereta bawah tanah' },
+  { character: 'つ', romaji: 'tsu', group: 't', exampleWord: 'つくえ', exampleRomaji: 'tsukue', exampleMeaning: 'Meja' },
+  { character: 'て', romaji: 'te', group: 't', exampleWord: 'てんない', exampleRomaji: 'tennai', exampleMeaning: 'Makan di tempat' },
+  { character: 'と', romaji: 'to', group: 't', exampleWord: 'とうきょう', exampleRomaji: 'toukyou', exampleMeaning: 'Tokyo' },
+
+  // N-row
+  { character: 'な', romaji: 'na', group: 'n', exampleWord: 'なに', exampleRomaji: 'nani', exampleMeaning: 'Apa' },
+  { character: 'に', romaji: 'ni', group: 'n', exampleWord: 'にほん', exampleRomaji: 'nihon', exampleMeaning: 'Jepang' },
+  { character: 'ぬ', romaji: 'nu', group: 'n', exampleWord: 'ぬいぐるみ', exampleRomaji: 'nuigurumi', exampleMeaning: 'Boneka' },
+  { character: 'ね', romaji: 'ne', group: 'n', exampleWord: 'ねこ', exampleRomaji: 'neko', exampleMeaning: 'Kucing' },
+  { character: 'の', romaji: 'no', group: 'n', exampleWord: 'のみもの', exampleRomaji: 'nomimono', exampleMeaning: 'Minuman' },
+
+  // H-row
+  { character: 'は', romaji: 'ha', group: 'h', exampleWord: 'はじめまして', exampleRomaji: 'hajimemashite', exampleMeaning: 'Senang berkenalan' },
+  { character: 'ひ', romaji: 'hi', group: 'h', exampleWord: 'ひと', exampleRomaji: 'hito', exampleMeaning: 'Orang' },
+  { character: 'ふ', romaji: 'fu', group: 'h', exampleWord: 'ふくろ', exampleRomaji: 'fukuro', exampleMeaning: 'Kantong plastik' },
+  { character: 'へ', romaji: 'he', group: 'h', exampleWord: 'へや', exampleRomaji: 'heya', exampleMeaning: 'Kamar' },
+  { character: 'ほ', romaji: 'ho', group: 'h', exampleWord: 'ホテル', exampleRomaji: 'hoteru', exampleMeaning: 'Hotel' },
+
+  // M-row
+  { character: 'ま', romaji: 'ma', group: 'm', exampleWord: 'まっすぐ', exampleRomaji: 'massugu', exampleMeaning: 'Lurus' },
+  { character: 'み', romaji: 'mi', group: 'm', exampleWord: 'みず', exampleRomaji: 'mizu', exampleMeaning: 'Air putih' },
+  { character: 'む', romaji: 'mu', group: 'm', exampleWord: 'むりょう', exampleRomaji: 'muryou', exampleMeaning: 'Gratis' },
+  { character: 'め', romaji: 'me', group: 'm', exampleWord: 'メニュー', exampleRomaji: 'menyuu', exampleMeaning: 'Buku menu' },
+  { character: 'も', romaji: 'mo', group: 'm', exampleWord: 'もちろん', exampleRomaji: 'mochiron', exampleMeaning: 'Tentu saja' },
+
+  // Y-row
+  { character: 'や', romaji: 'ya', group: 'y', exampleWord: 'やすみ', exampleRomaji: 'yasumi', exampleMeaning: 'Libur / Istirahat' },
+  { character: 'ゆ', romaji: 'yu', group: 'y', exampleWord: 'ゆうめい', exampleRomaji: 'yuumei', exampleMeaning: 'Terkenal' },
+  { character: 'よ', romaji: 'yo', group: 'y', exampleWord: 'ようこそ', exampleRomaji: 'youkoso', exampleMeaning: 'Selamat datang' },
+
+  // R-row
+  { character: 'ら', romaji: 'ra', group: 'r', exampleWord: 'ラーメン', exampleRomaji: 'raamen', exampleMeaning: 'Mie ramen' },
+  { character: 'り', romaji: 'ri', group: 'r', exampleWord: 'りょこう', exampleRomaji: 'ryokou', exampleMeaning: 'Perjalanan / Wisata' },
+  { character: 'る', romaji: 'ru', group: 'r', exampleWord: 'るす', exampleRomaji: 'rusu', exampleMeaning: 'Sedang tidak ada di rumah' },
+  { character: 'れ', romaji: 're', group: 'r', exampleWord: 'れきし', exampleRomaji: 'rekishi', exampleMeaning: 'Sejarah' },
+  { character: 'ろ', romaji: 'ro', group: 'r', exampleWord: 'ろく', exampleRomaji: 'roku', exampleMeaning: 'Enam (6)' },
+
+  // W-row & N
+  { character: 'わ', romaji: 'wa', group: 'w', exampleWord: 'わたし', exampleRomaji: 'watashi', exampleMeaning: 'Saya' },
+  { character: 'を', romaji: 'wo (o)', group: 'w', exampleWord: 'お茶を飲む', exampleRomaji: 'ocha o nomu', exampleMeaning: 'Minum teh (partikel o)' },
+  { character: 'ん', romaji: 'n', group: 'n_single', exampleWord: 'かんぱい', exampleRomaji: 'kanpai', exampleMeaning: 'Bersulang!' },
+];
+
+export const KANJI_DATA: KanjiItem[] = [
+  // Kategori: Angka & Waktu
+  {
+    id: 'k-1',
+    kanji: '一',
+    onyomi: ['イチ (ICHI)', 'イツ (ITSU)'],
+    kunyomi: ['ひと (hito)', 'ひとつ (hitotsu)'],
+    romaji: 'ichi / hito',
+    meaning: 'Satu',
+    category: 'angka_waktu',
+    strokeCount: 1,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '一つ', furigana: 'ひとつ', romaji: 'hitotsu', meaning: 'Satu buah (pesanan)' },
+      { word: '一日', furigana: 'ついたち', romaji: 'tsuitachi', meaning: 'Tanggal satu' },
+      { word: '一人', furigana: 'ひとり', romaji: 'hitori', meaning: 'Sendiri / satu orang' },
+    ],
+  },
+  {
+    id: 'k-2',
+    kanji: '二',
+    onyomi: ['ニ (NI)'],
+    kunyomi: ['ふた (futa)', 'ふたつ (futatsu)'],
+    romaji: 'ni / futa',
+    meaning: 'Dua',
+    category: 'angka_waktu',
+    strokeCount: 2,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '二つ', furigana: 'ふたつ', romaji: 'futatsu', meaning: 'Dua buah' },
+      { word: '二人', furigana: 'ふたり', romaji: 'futari', meaning: 'Dua orang' },
+      { word: '二月', furigana: 'にがつ', romaji: 'nigatsu', meaning: 'Bulan Februari' },
+    ],
+  },
+  {
+    id: 'k-3',
+    kanji: '三',
+    onyomi: ['サン (SAN)'],
+    kunyomi: ['み (mi)', 'みっつ (mittsu)'],
+    romaji: 'san / mi',
+    meaning: 'Tiga',
+    category: 'angka_waktu',
+    strokeCount: 3,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '三つ', furigana: 'みっつ', romaji: 'mittsu', meaning: 'Tiga buah' },
+      { word: '三人', furigana: 'さんにん', romaji: 'sannin', meaning: 'Tiga orang' },
+    ],
+  },
+  {
+    id: 'k-4',
+    kanji: '円',
+    onyomi: ['エン (EN)'],
+    kunyomi: ['まる (maru)'],
+    romaji: 'en',
+    meaning: 'Yen (Mata uang Jepang) / Lingkaran',
+    category: 'angka_waktu',
+    strokeCount: 4,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '百円', furigana: 'ひゃくえん', romaji: 'hyaku-en', meaning: '100 Yen' },
+      { word: '千円', furigana: 'せんえん', romaji: 'sen-en', meaning: '1.000 Yen' },
+      { word: '一万円', furigana: 'いちまんえん', romaji: 'ichiman-en', meaning: '10.000 Yen' },
+    ],
+  },
+  {
+    id: 'k-5',
+    kanji: '日',
+    onyomi: ['ニチ (NICHI)', 'ジツ (JITSU)'],
+    kunyomi: ['ひ (hi)', 'か (ka)'],
+    romaji: 'nichi / hi',
+    meaning: 'Hari / Matahari',
+    category: 'angka_waktu',
+    strokeCount: 4,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '日本', furigana: 'にほん', romaji: 'Nihon', meaning: 'Jepang (Negeri Matahari Terbit)' },
+      { word: '今日', furigana: 'きょう', romaji: 'kyou', meaning: 'Hari ini' },
+      { word: '日曜日', furigana: 'にちようび', romaji: 'nichiyoubi', meaning: 'Hari Minggu' },
+    ],
+  },
+  {
+    id: 'k-6',
+    kanji: '時',
+    onyomi: ['ジ (JI)'],
+    kunyomi: ['とき (toki)'],
+    romaji: 'ji / toki',
+    meaning: 'Waktu / Jam',
+    category: 'angka_waktu',
+    strokeCount: 10,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '何時', furigana: 'なんじ', romaji: 'nanji', meaning: 'Jam berapa' },
+      { word: '時間', furigana: 'じかん', romaji: 'jikan', meaning: 'Waktu / durasi jam' },
+      { word: '一時', furigana: 'いちじ', romaji: 'ichiji', meaning: 'Jam satu' },
+    ],
+  },
+  {
+    id: 'k-7',
+    kanji: '今',
+    onyomi: ['コン (KON)'],
+    kunyomi: ['いま (ima)'],
+    romaji: 'ima / kon',
+    meaning: 'Sekarang',
+    category: 'angka_waktu',
+    strokeCount: 4,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '今', furigana: 'いま', romaji: 'ima', meaning: 'Sekarang' },
+      { word: '今晩', furigana: 'こんばん', romaji: 'konban', meaning: 'Malam ini' },
+      { word: '今週', furigana: 'こんしゅう', romaji: 'konshuu', meaning: 'Minggu ini' },
+    ],
+  },
+
+  // Kategori: Makanan & Minuman
+  {
+    id: 'k-8',
+    kanji: '水',
+    onyomi: ['スイ (SUI)'],
+    kunyomi: ['みず (mizu)'],
+    romaji: 'mizu / sui',
+    meaning: 'Air',
+    category: 'makanan',
+    strokeCount: 4,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '水', furigana: 'みず', romaji: 'mizu', meaning: 'Air minum' },
+      { word: 'お水', furigana: 'おみず', romaji: 'omizu', meaning: 'Air minum (sopan)' },
+      { word: '水曜日', furigana: 'すいようび', romaji: 'suiyoubi', meaning: 'Hari Rabu' },
+    ],
+  },
+  {
+    id: 'k-9',
+    kanji: '飲',
+    onyomi: ['イン (IN)'],
+    kunyomi: ['の.む (nomu)'],
+    romaji: 'nomu',
+    meaning: 'Minum',
+    category: 'makanan',
+    strokeCount: 12,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '飲む', furigana: 'のむ', romaji: 'nomu', meaning: 'Minum (kata kerja)' },
+      { word: '飲み物', furigana: 'のみもの', romaji: 'nomimono', meaning: 'Minuman' },
+      { word: '飲食店', furigana: 'いんしょくてん', romaji: 'inshokuten', meaning: 'Restoran / tempat makan-minum' },
+    ],
+  },
+  {
+    id: 'k-10',
+    kanji: '食',
+    onyomi: ['ショク (SHOKU)'],
+    kunyomi: ['た.べる (taberu)'],
+    romaji: 'taberu / shoku',
+    meaning: 'Makan / Makanan',
+    category: 'makanan',
+    strokeCount: 9,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '食べる', furigana: 'たべる', romaji: 'taberu', meaning: 'Makan' },
+      { word: '食べ物', furigana: 'たべもの', romaji: 'tabemono', meaning: 'Makanan' },
+      { word: '朝食', furigana: 'ちょうしょく', romaji: 'choushoku', meaning: 'Sarapan pagi' },
+      { word: '食事', furigana: 'しょくじ', romaji: 'shokuji', meaning: 'Santapan / makan' },
+    ],
+  },
+  {
+    id: 'k-11',
+    kanji: '茶',
+    onyomi: ['チャ (CHA)', 'サ (SA)'],
+    kunyomi: [],
+    romaji: 'cha',
+    meaning: 'Teh',
+    category: 'makanan',
+    strokeCount: 9,
+    jlptLevel: 'N5',
+    examples: [
+      { word: 'お茶', furigana: 'おちゃ', romaji: 'ocha', meaning: 'Teh hijau Jepang' },
+      { word: '紅茶', furigana: 'こうちゃ', romaji: 'koucha', meaning: 'Teh hitam' },
+      { word: '喫茶店', furigana: 'きっさてん', romaji: 'kissaten', meaning: 'Kedai kopi tradisional' },
+    ],
+  },
+  {
+    id: 'k-12',
+    kanji: '店',
+    onyomi: ['テン (TEN)'],
+    kunyomi: ['みせ (mise)'],
+    romaji: 'mise / ten',
+    meaning: 'Toko / Kedai',
+    category: 'makanan',
+    strokeCount: 8,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '店', furigana: 'みせ', romaji: 'mise', meaning: 'Toko' },
+      { word: '店員', furigana: 'てんいん', romaji: 'ten-in', meaning: 'Pelayan toko' },
+      { word: '店内', furigana: 'てんない', romaji: 'tennai', meaning: 'Di dalam toko / Dine in' },
+    ],
+  },
+
+  // Kategori: Tempat & Transportasi
+  {
+    id: 'k-13',
+    kanji: '駅',
+    onyomi: ['エキ (EKI)'],
+    kunyomi: [],
+    romaji: 'eki',
+    meaning: 'Stasiun Kereta',
+    category: 'tempat_arah',
+    strokeCount: 14,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '駅', furigana: 'えき', romaji: 'eki', meaning: 'Stasiun' },
+      { word: '駅前', furigana: 'えきまえ', romaji: 'ekimae', meaning: 'Depan stasiun' },
+      { word: '東京駅', furigana: 'とうきょうえき', romaji: 'Toukyou-eki', meaning: 'Stasiun Tokyo' },
+    ],
+  },
+  {
+    id: 'k-14',
+    kanji: '車',
+    onyomi: ['シャ (SHA)'],
+    kunyomi: ['くるま (kuruma)'],
+    romaji: 'kuruma / sha',
+    meaning: 'Mobil / Kendaraan roda',
+    category: 'tempat_arah',
+    strokeCount: 7,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '車', furigana: 'くるま', romaji: 'kuruma', meaning: 'Mobil' },
+      { word: '電車', furigana: 'でんしゃ', romaji: 'densha', meaning: 'Kereta listrik' },
+      { word: '自転車', furigana: 'じてんしゃ', romaji: 'jitensha', meaning: 'Sepeda kayuh' },
+    ],
+  },
+  {
+    id: 'k-15',
+    kanji: '電',
+    onyomi: ['デン (DEN)'],
+    kunyomi: [],
+    romaji: 'den',
+    meaning: 'Listrik',
+    category: 'tempat_arah',
+    strokeCount: 13,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '電車', furigana: 'でんしゃ', romaji: 'densha', meaning: 'Kereta listrik' },
+      { word: '電話', furigana: 'でんわ', romaji: 'denwa', meaning: 'Telepon' },
+    ],
+  },
+  {
+    id: 'k-16',
+    kanji: '右',
+    onyomi: ['ウ (U)', 'ユウ (YUU)'],
+    kunyomi: ['みぎ (migi)'],
+    romaji: 'migi',
+    meaning: 'Kanan',
+    category: 'tempat_arah',
+    strokeCount: 5,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '右', furigana: 'みぎ', romaji: 'migi', meaning: 'Kanan' },
+      { word: '右手', furigana: 'みぎて', romaji: 'migite', meaning: 'Tangan kanan / sebelah kanan' },
+    ],
+  },
+  {
+    id: 'k-17',
+    kanji: '左',
+    onyomi: ['サ (SA)'],
+    kunyomi: ['ひだり (hidari)'],
+    romaji: 'hidari',
+    meaning: 'Kiri',
+    category: 'tempat_arah',
+    strokeCount: 5,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '左', furigana: 'ひだり', romaji: 'hidari', meaning: 'Kiri' },
+      { word: '左手', furigana: 'ひだりて', romaji: 'hidarite', meaning: 'Tangan kiri / sebelah kiri' },
+    ],
+  },
+  {
+    id: 'k-18',
+    kanji: '行',
+    onyomi: ['コウ (KOU)', 'ギョウ (GYOU)'],
+    kunyomi: ['い.く (iku)', 'ゆ.く (yuku)'],
+    romaji: 'iku / kou',
+    meaning: 'Pergi / Melakukan',
+    category: 'tempat_arah',
+    strokeCount: 6,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '行く', furigana: 'いく', romaji: 'iku', meaning: 'Pergi' },
+      { word: '旅行', furigana: 'りょこう', romaji: 'ryokou', meaning: 'Perjalanan / Liburan' },
+    ],
+  },
+
+  // Kategori: Kehidupan & Manusia
+  {
+    id: 'k-19',
+    kanji: '人',
+    onyomi: ['ジン (JIN)', 'ニン (NIN)'],
+    kunyomi: ['ひと (hito)'],
+    romaji: 'hito / jin',
+    meaning: 'Orang / Manusia',
+    category: 'kehidupan',
+    strokeCount: 2,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '人', furigana: 'ひと', romaji: 'hito', meaning: 'Orang' },
+      { word: '日本人', furigana: 'にほんじん', romaji: 'Nihonjin', meaning: 'Orang Jepang' },
+      { word: 'インドネシア人', furigana: 'インドネシアじん', romaji: 'Indoneshiajin', meaning: 'Orang Indonesia' },
+    ],
+  },
+  {
+    id: 'k-20',
+    kanji: '私',
+    onyomi: ['シ (SHI)'],
+    kunyomi: ['わたし (watashi)'],
+    romaji: 'watashi',
+    meaning: 'Saya / Diri sendiri',
+    category: 'kehidupan',
+    strokeCount: 7,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '私', furigana: 'わたし', romaji: 'watashi', meaning: 'Saya' },
+    ],
+  },
+  {
+    id: 'k-21',
+    kanji: '友',
+    onyomi: ['ユウ (YUU)'],
+    kunyomi: ['とも (tomo)'],
+    romaji: 'tomo / yuu',
+    meaning: 'Teman / Sahabat',
+    category: 'kehidupan',
+    strokeCount: 4,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '友達', furigana: 'ともだち', romaji: 'tomodachi', meaning: 'Teman' },
+      { word: '友人', furigana: 'ゆうじん', romaji: 'yuujin', meaning: 'Sahabat (formal)' },
+    ],
+  },
+  {
+    id: 'k-22',
+    kanji: '語',
+    onyomi: ['ゴ (GO)'],
+    kunyomi: ['かた.る (kataru)'],
+    romaji: 'go',
+    meaning: 'Bahasa / Kata',
+    category: 'kehidupan',
+    strokeCount: 14,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '日本語', furigana: 'にほんご', romaji: 'Nihongo', meaning: 'Bahasa Jepang' },
+      { word: '英語', furigana: 'えいご', romaji: 'Eigo', meaning: 'Bahasa Inggris' },
+      { word: '単語', furigana: 'たんご', romaji: 'tango', meaning: 'Kosa kata' },
+    ],
+  },
+  {
+    id: 'k-23',
+    kanji: '本',
+    onyomi: ['ホン (HON)'],
+    kunyomi: ['もと (moto)'],
+    romaji: 'hon',
+    meaning: 'Buku / Asal mula',
+    category: 'kehidupan',
+    strokeCount: 5,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '本', furigana: 'ほん', romaji: 'hon', meaning: 'Buku' },
+      { word: '日本', furigana: 'にほん', romaji: 'Nihon', meaning: 'Jepang' },
+    ],
+  },
+  {
+    id: 'k-24',
+    kanji: '学',
+    onyomi: ['ガク (GAKU)'],
+    kunyomi: ['まな.ぶ (manabu)'],
+    romaji: 'gaku / manabu',
+    meaning: 'Belajar / Ilmu',
+    category: 'kehidupan',
+    strokeCount: 8,
+    jlptLevel: 'N5',
+    examples: [
+      { word: '学生', furigana: 'がくせい', romaji: 'gakusei', meaning: 'Pelajar / Mahasiswa' },
+      { word: '学校', furigana: 'がっこう', romaji: 'gakkou', meaning: 'Sekolah' },
+      { word: '大学', furigana: 'だいがく', romaji: 'daigaku', meaning: 'Universitas' },
+    ],
+  },
+];
+
+export const KANJI_QUIZZES: KanjiQuizQuestion[] = [
+  {
+    id: 'kq-1',
+    prompt: 'Apa cara baca Hiragana dari Kanji "駅" yang berarti stasiun?',
+    targetCharacter: '駅',
+    options: ['えき (eki)', 'みせ (mise)', 'くるま (kuruma)', 'まち (machi)'],
+    correctAnswer: 'えき (eki)',
+    explanation: '駅 dibaca "eki" dan berarti stasiun kereta.',
+  },
+  {
+    id: 'kq-2',
+    prompt: 'Bagaimana cara membaca ungkapan pesanan "一つ"?',
+    targetCharacter: '一つ',
+    options: ['ひとつ (hitotsu)', 'いちにち (ichinichi)', 'ひとり (hitori)', 'いっさい (issai)'],
+    correctAnswer: 'ひとつ (hitotsu)',
+    explanation: '一つ dibaca "hitotsu" dan digunakan untuk menghitung satu buah barang/pesanan.',
+  },
+  {
+    id: 'kq-3',
+    prompt: 'Apa makna dari Kanji gabungan "電車" (でんしゃ)?',
+    targetCharacter: '電車',
+    options: ['Kereta Listrik', 'Mobil Pribadi', 'Sepeda Motor', 'Pesawat Terbang'],
+    correctAnswer: 'Kereta Listrik',
+    explanation: '電 (listrik) + 車 (kendaraan roda) = 電車 (densha: kereta listrik).',
+  },
+  {
+    id: 'kq-4',
+    prompt: 'Apa cara baca Hiragana untuk kata "水" (Air)?',
+    targetCharacter: '水',
+    options: ['みず (mizu)', 'おちゃ (ocha)', 'さけ (sake)', 'ゆ (yu)'],
+    correctAnswer: 'みず (mizu)',
+    explanation: '水 dibaca "mizu", sering diucapkan "o-mizu" secara sopan saat meminta air di kafe.',
+  },
+  {
+    id: 'kq-5',
+    prompt: 'Karakter Hiragana manakah yang berbunyi "su"?',
+    targetCharacter: 'su',
+    options: ['す', 'さ', 'せ', 'そ'],
+    correctAnswer: 'す',
+    explanation: 'Karakter "す" dibaca "su" (seperti pada kata "sumimasen").',
+  },
+  {
+    id: 'kq-6',
+    prompt: 'Apa makna dari kata "朝食" (ちょうしょく)?',
+    targetCharacter: '朝食',
+    options: ['Sarapan Pagi', 'Makan Malam', 'Makan Siang', 'Minum Sore'],
+    correctAnswer: 'Sarapan Pagi',
+    explanation: '朝 (pagi) + 食 (makan) = 朝食 (choushoku: sarapan pagi).',
+  },
+];
+
+export const KATAKANA_DATA: KatakanaChar[] = [
+  // Vowels
+  { character: 'ア', romaji: 'a', group: 'vowels', exampleWord: 'アイス', exampleRomaji: 'aisu', exampleMeaning: 'Es / Ice cream' },
+  { character: 'イ', romaji: 'i', group: 'vowels', exampleWord: 'インドネシア', exampleRomaji: 'Indoneshia', exampleMeaning: 'Indonesia' },
+  { character: 'ウ', romaji: 'u', group: 'vowels', exampleWord: 'ウェイター', exampleRomaji: 'weitaa', exampleMeaning: 'Pelayan pria' },
+  { character: 'エ', romaji: 'e', group: 'vowels', exampleWord: 'エレベーター', exampleRomaji: 'erebeetaa', exampleMeaning: 'Lift / Elevator' },
+  { character: 'オ', romaji: 'o', group: 'vowels', exampleWord: 'オレンジ', exampleRomaji: 'orenji', exampleMeaning: 'Jeruk' },
+
+  // K-row
+  { character: 'カ', romaji: 'ka', group: 'k', exampleWord: 'カフェ', exampleRomaji: 'kafe', exampleMeaning: 'Kafe' },
+  { character: 'キ', romaji: 'ki', group: 'k', exampleWord: 'キッチン', exampleRomaji: 'kicchin', exampleMeaning: 'Dapur' },
+  { character: 'ク', romaji: 'ku', group: 'k', exampleWord: 'クロワッサン', exampleRomaji: 'kurowassan', exampleMeaning: 'Croissant' },
+  { character: 'ケ', romaji: 'ke', group: 'k', exampleWord: 'ケーキ', exampleRomaji: 'keeki', exampleMeaning: 'Kue / Cake' },
+  { character: 'コ', romaji: 'ko', group: 'k', exampleWord: 'コーヒー', exampleRomaji: 'koohii', exampleMeaning: 'Kopi' },
+
+  // S-row
+  { character: 'サ', romaji: 'sa', group: 's', exampleWord: 'サラダ', exampleRomaji: 'sarada', exampleMeaning: 'Salad' },
+  { character: 'シ', romaji: 'shi', group: 's', exampleWord: 'シャツ', exampleRomaji: 'shatsu', exampleMeaning: 'Kemeja' },
+  { character: 'ス', romaji: 'su', group: 's', exampleWord: 'スプーン', exampleRomaji: 'supuun', exampleMeaning: 'Sendok' },
+  { character: 'セ', romaji: 'se', group: 's', exampleWord: 'セーター', exampleRomaji: 'seetaa', exampleMeaning: 'Sweter' },
+  { character: 'ソ', romaji: 'so', group: 's', exampleWord: 'ソファ', exampleRomaji: 'sofa', exampleMeaning: 'Sofa' },
+
+  // T-row
+  { character: 'タ', romaji: 'ta', group: 't', exampleWord: 'タクシー', exampleRomaji: 'takushii', exampleMeaning: 'Taksi' },
+  { character: 'チ', romaji: 'chi', group: 't', exampleWord: 'チーズ', exampleRomaji: 'chiizu', exampleMeaning: 'Keju' },
+  { character: 'ツ', romaji: 'tsu', group: 't', exampleWord: 'ツアー', exampleRomaji: 'tsuaa', exampleMeaning: 'Tur wisata' },
+  { character: 'テ', romaji: 'te', group: 't', exampleWord: 'テーブル', exampleRomaji: 'teeburu', exampleMeaning: 'Meja makan' },
+  { character: 'ト', romaji: 'to', group: 't', exampleWord: 'トイレ', exampleRomaji: 'toire', exampleMeaning: 'Toilet' },
+
+  // N-row
+  { character: 'ナ', romaji: 'na', group: 'n', exampleWord: 'ナイフ', exampleRomaji: 'naifu', exampleMeaning: 'Pisau' },
+  { character: 'ニ', romaji: 'ni', group: 'n', exampleWord: 'ニュース', exampleRomaji: 'nyuusu', exampleMeaning: 'Berita' },
+  { character: 'ヌ', romaji: 'nu', group: 'n', exampleWord: 'ヌードル', exampleRomaji: 'nuudoru', exampleMeaning: 'Mie / Noodle' },
+  { character: 'ネ', romaji: 'ne', group: 'n', exampleWord: 'ネット', exampleRomaji: 'netto', exampleMeaning: 'Internet' },
+  { character: 'ノ', romaji: 'no', group: 'n', exampleWord: 'ノート', exampleRomaji: 'nooto', exampleMeaning: 'Buku catatan' },
+
+  // H-row
+  { character: 'ハ', romaji: 'ha', group: 'h', exampleWord: 'ハンバーガー', exampleRomaji: 'hanbaagaa', exampleMeaning: 'Hamburger' },
+  { character: 'ヒ', romaji: 'hi', group: 'h', exampleWord: 'ヒーター', exampleRomaji: 'hiitaa', exampleMeaning: 'Pemanas ruangan' },
+  { character: 'フ', romaji: 'fu', group: 'h', exampleWord: 'フォーク', exampleRomaji: 'fooku', exampleMeaning: 'Garpu' },
+  { character: 'ヘ', romaji: 'he', group: 'h', exampleWord: 'ヘルメット', exampleRomaji: 'herumetto', exampleMeaning: 'Helm' },
+  { character: 'ホ', romaji: 'ho', group: 'h', exampleWord: 'ホテル', exampleRomaji: 'hoteru', exampleMeaning: 'Hotel' },
+
+  // M-row
+  { character: 'マ', romaji: 'ma', group: 'm', exampleWord: 'マスク', exampleRomaji: 'masuku', exampleMeaning: 'Masker' },
+  { character: 'ミ', romaji: 'mi', group: 'm', exampleWord: 'ミルク', exampleRomaji: 'miruku', exampleMeaning: 'Susu' },
+  { character: 'ム', romaji: 'mu', group: 'm', exampleWord: 'ムービー', exampleRomaji: 'muubii', exampleMeaning: 'Film bioskop' },
+  { character: 'メ', romaji: 'me', group: 'm', exampleWord: 'メニュー', exampleRomaji: 'menyuu', exampleMeaning: 'Buku menu' },
+  { character: 'モ', romaji: 'mo', group: 'm', exampleWord: 'モデル', exampleRomaji: 'moderu', exampleMeaning: 'Model' },
+
+  // Y-row
+  { character: 'ヤ', romaji: 'ya', group: 'y', exampleWord: 'ヤング', exampleRomaji: 'yangu', exampleMeaning: 'Muda' },
+  { character: 'ユ', romaji: 'yu', group: 'y', exampleWord: 'ユーザー', exampleRomaji: 'yuuzaa', exampleMeaning: 'Pengguna' },
+  { character: 'ヨ', romaji: 'yo', group: 'y', exampleWord: 'ヨーグルト', exampleRomaji: 'yooguruto', exampleMeaning: 'Yogurt' },
+
+  // R-row
+  { character: 'ラ', romaji: 'ra', group: 'r', exampleWord: 'ラーメン', exampleRomaji: 'raamen', exampleMeaning: 'Mie ramen' },
+  { character: 'リ', romaji: 'ri', group: 'r', exampleWord: 'リモコン', exampleRomaji: 'rimokon', exampleMeaning: 'Remot kontrol' },
+  { character: 'ル', romaji: 'ru', group: 'r', exampleWord: 'ルール', exampleRomaji: 'ruuru', exampleMeaning: 'Aturan' },
+  { character: 'レ', romaji: 're', group: 'r', exampleWord: 'レストラン', exampleRomaji: 'resutoran', exampleMeaning: 'Restoran' },
+  { character: 'ロ', romaji: 'ro', group: 'r', exampleWord: 'ロビー', exampleRomaji: 'robii', exampleMeaning: 'Lobi hotel' },
+
+  // W-row & N
+  { character: 'ワ', romaji: 'wa', group: 'w', exampleWord: 'ワイン', exampleRomaji: 'wain', exampleMeaning: 'Anggur / Wine' },
+  { character: 'ヲ', romaji: 'wo', group: 'w', exampleWord: 'ヲタク', exampleRomaji: 'wotaku', exampleMeaning: 'Otaku' },
+  { character: 'ン', romaji: 'n', group: 'n_single', exampleWord: 'パン', exampleRomaji: 'pan', exampleMeaning: 'Roti' },
+];
+
+export const DAKUON_DATA: DakuonChar[] = [
+  { character: 'が', romaji: 'ga', type: 'dakuten', baseChar: 'か', exampleWord: 'がっこう', exampleRomaji: 'gakkou', exampleMeaning: 'Sekolah' },
+  { character: 'ぎ', romaji: 'gi', type: 'dakuten', baseChar: 'き', exampleWord: 'ぎんこう', exampleRomaji: 'ginkou', exampleMeaning: 'Bank' },
+  { character: 'ぐ', romaji: 'gu', type: 'dakuten', baseChar: 'く', exampleWord: 'ぐらい', exampleRomaji: 'gurai', exampleMeaning: 'Kira-kira / sekitar' },
+  { character: 'げ', romaji: 'ge', type: 'dakuten', baseChar: 'け', exampleWord: 'げんき', exampleRomaji: 'genki', exampleMeaning: 'Sehat / bersemangat' },
+  { character: 'ご', romaji: 'go', type: 'dakuten', baseChar: 'こ', exampleWord: 'ごはん', exampleRomaji: 'gohan', exampleMeaning: 'Nasi / makanan' },
+
+  { character: 'ざ', romaji: 'za', type: 'dakuten', baseChar: 'さ', exampleWord: 'ざっし', exampleRomaji: 'zasshi', exampleMeaning: 'Majalah' },
+  { character: 'じ', romaji: 'ji', type: 'dakuten', baseChar: 'し', exampleWord: 'じかん', exampleRomaji: 'jikan', exampleMeaning: 'Waktu' },
+  { character: 'ず', romaji: 'zu', type: 'dakuten', baseChar: 'す', exampleWord: 'ずっと', exampleRomaji: 'zutto', exampleMeaning: 'Terus menerus' },
+  { character: 'ぜ', romaji: 'ze', type: 'dakuten', baseChar: 'せ', exampleWord: 'ぜんぶ', exampleRomaji: 'zenbu', exampleMeaning: 'Semuanya' },
+  { character: 'ぞ', romaji: 'zo', type: 'dakuten', baseChar: 'そ', exampleWord: 'ぞう', exampleRomaji: 'zou', exampleMeaning: 'Gajah' },
+
+  { character: 'だ', romaji: 'da', type: 'dakuten', baseChar: 'た', exampleWord: 'だいがく', exampleRomaji: 'daigaku', exampleMeaning: 'Universitas' },
+  { character: 'ぢ', romaji: 'ji', type: 'dakuten', baseChar: 'ち', exampleWord: 'はなぢ', exampleRomaji: 'hanaji', exampleMeaning: 'Mimisan' },
+  { character: 'づ', romaji: 'zu', type: 'dakuten', baseChar: 'つ', exampleWord: 'つづく', exampleRomaji: 'tsuzuku', exampleMeaning: 'Berlanjut' },
+  { character: 'で', romaji: 'de', type: 'dakuten', baseChar: 'て', exampleWord: 'でんしゃ', exampleRomaji: 'densha', exampleMeaning: 'Kereta listrik' },
+  { character: 'ど', romaji: 'do', type: 'dakuten', baseChar: 'と', exampleWord: 'どこ', exampleRomaji: 'doko', exampleMeaning: 'Di mana' },
+
+  { character: 'ば', romaji: 'ba', type: 'dakuten', baseChar: 'は', exampleWord: 'ばんせん', exampleRomaji: 'bansen', exampleMeaning: 'Peron jalur rel' },
+  { character: 'び', romaji: 'bi', type: 'dakuten', baseChar: 'ひ', exampleWord: 'びょういん', exampleRomaji: 'byouin', exampleMeaning: 'Rumah sakit' },
+  { character: 'ぶ', romaji: 'bu', type: 'dakuten', baseChar: 'ふ', exampleWord: 'ぶんぽう', exampleRomaji: 'bunpou', exampleMeaning: 'Tata bahasa' },
+  { character: 'べ', romaji: 'be', type: 'dakuten', baseChar: 'へ', exampleWord: 'べんきょう', exampleRomaji: 'benkyou', exampleMeaning: 'Belajar' },
+  { character: 'ぼ', romaji: 'bo', type: 'dakuten', baseChar: 'ほ', exampleWord: 'ぼうし', exampleRomaji: 'boushi', exampleMeaning: 'Topi' },
+
+  { character: 'ぱ', romaji: 'pa', type: 'handakuten', baseChar: 'は', exampleWord: 'パン', exampleRomaji: 'pan', exampleMeaning: 'Roti' },
+  { character: 'ぴ', romaji: 'pi', type: 'handakuten', baseChar: 'ひ', exampleWord: 'ピンク', exampleRomaji: 'pinku', exampleMeaning: 'Merah muda' },
+  { character: 'ぷ', romaji: 'pu', type: 'handakuten', baseChar: 'ふ', exampleWord: 'プール', exampleRomaji: 'puuru', exampleMeaning: 'Kolam renang' },
+  { character: 'ぺ', romaji: 'pe', type: 'handakuten', baseChar: 'へ', exampleWord: 'ペン', exampleRomaji: 'pen', exampleMeaning: 'Pena' },
+  { character: 'ぽ', romaji: 'po', type: 'handakuten', baseChar: 'ほ', exampleWord: 'ポケット', exampleRomaji: 'poketto', exampleMeaning: 'Saku' },
+];
+

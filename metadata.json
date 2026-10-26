@@ -1,0 +1,6 @@
+{
+  "name": "PolyglotLingo - Belajar Percakapan 5 Bahasa",
+  "description": "Platform pembelajaran bahasa interaktif untuk Bahasa Inggris, Jepang, Jerman, Belanda, dan Prancis dengan kurikulum percakapan sehari-hari dan latihan AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
